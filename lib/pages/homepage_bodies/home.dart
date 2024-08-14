@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:linkedin/constants/data.dart';
+import 'package:linkedin/models/post_model.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -6,13 +8,13 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        itemCount: 2,
+        itemCount: posts.length,
         itemBuilder: (BuildContext context, int index) {
-          return customPost(context);
+          return customPost(context, posts[index]);
         });
   }
 
-  Widget customPost(BuildContext context) {
+  Widget customPost(BuildContext context, Post post) {
     return Container(
       color: const Color.fromARGB(31, 85, 84, 84),
       margin: const EdgeInsets.only(bottom: 5, top: 1, left: 1, right: 1),
@@ -28,7 +30,7 @@ class Home extends StatelessWidget {
               GestureDetector(
                 child: const CircleAvatar(
                   backgroundColor: Colors.grey,
-                  child: Text("A"),
+                  child: Icon(Icons.person),
                 ),
               ),
               const SizedBox(
@@ -39,15 +41,15 @@ class Home extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   RichText(
-                    text: const TextSpan(children: [
+                    text:  TextSpan(children: [
                       TextSpan(
-                        text: 'Amos gitau',
-                        style: TextStyle(
+                        text: post.user.name,
+                        style:const TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.bold,
                             color: Colors.black),
                       ),
-                      TextSpan(
+                      const TextSpan(
                         text: '. 1st',
                         style: TextStyle(
                             fontSize: 12,
@@ -56,7 +58,7 @@ class Home extends StatelessWidget {
                       )
                     ]),
                   ),
-                  const Text("Data analysis/activist/.."),
+                  Text(post.user.userInfo!),
                   const Text("1 d . ()")
                 ],
               ),
@@ -73,6 +75,15 @@ class Home extends StatelessWidget {
               )),
             ],
           ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0),
+                child:  Text(post.description!,),
+              ),
+            ],
+          ),
           Expanded(child: Container(
             margin: const EdgeInsets.all(2),
             width: MediaQuery.of(context).size.width,
@@ -83,7 +94,7 @@ class Home extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
             ),
 
-            child: Image.asset("assets/images/cr3.jpg", fit: BoxFit.cover,)
+            child: Image.asset(post.imgUrl!, fit: BoxFit.cover,)
             ,),),
           
         ],

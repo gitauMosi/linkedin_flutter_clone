@@ -2,7 +2,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
 
 class MynetworkPage extends StatelessWidget {
   const MynetworkPage({super.key});
@@ -180,24 +180,4 @@ class MynetworkPage extends StatelessWidget {
   
   }
 
-  // Widget gridView(){
-  //   return Container(
-  //     child: Column(
-  //       children: [
-  //         Text("Based in your recent Activity"),
-  //         Row(
-  //           children: [
-
-  //           ],
-  //         )
-  //       ],
-  //     ),
-
-  //   );
-  // }
-  // Widget customContainer() {
-  //   return Container(
-  //     decoration V
-  //   );
-  // }
 }
